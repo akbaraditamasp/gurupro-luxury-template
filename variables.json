@@ -1,4 +1,9 @@
 {
+  "logo": {
+    "label": "URL Logo",
+    "rules": "required",
+    "type": "text_input"
+  },
   "base_color": {
     "label": "Warna Dasar",
     "rules": "required",

@@ -101,7 +101,7 @@ export default function App() {
         style={{ backgroundColor: data.variables.base_color }}
       >
         <img
-          src="https://aws.dicoding.com/images/aws/aws-training-certification-final.svg"
+          src={data.variables.logo}
           className="h-20 w-auto mx-auto mb-8 -mt-20"
         />
         <div className="font-poppins text-2xl lg:text-4xl text-white font-bold text-center w-full lg:w-1/2 mx-auto">
