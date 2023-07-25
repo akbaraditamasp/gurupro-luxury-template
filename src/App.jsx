@@ -1,18 +1,16 @@
 import { Fragment, useState } from "react";
-import * as icons from "react-icons/cg";
-import Container from "./components/Container";
-import CardSlideList from "./components/CardSlideList";
-import QuestionList from "./components/QuestionList";
-import Button from "./components/Button";
-
-const {
+import {
   CgChevronDoubleDown,
   CgChevronLeft,
   CgChevronRight,
   CgFacebook,
   CgInstagram,
   CgYoutube,
-} = icons;
+} from "react-icons/cg";
+import Container from "./components/Container";
+import CardSlideList from "./components/CardSlideList";
+import QuestionList from "./components/QuestionList";
+import Button from "./components/Button";
 
 const get = [
   {
