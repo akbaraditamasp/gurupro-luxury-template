@@ -11,36 +11,10 @@ import Container from "./components/Container";
 import CardSlideList from "./components/CardSlideList";
 import QuestionList from "./components/QuestionList";
 import Button from "./components/Button";
-
-const get = [
-  {
-    title: "Sertifikat",
-    description:
-      "Dapatkan sertifikat standar industri setelah menyelesaikan kelas ini.",
-  },
-  {
-    title: "Sertifikat",
-    description:
-      "Dapatkan sertifikat standar industri setelah menyelesaikan kelas ini.",
-  },
-  {
-    title: "Sertifikat",
-    description:
-      "Dapatkan sertifikat standar industri setelah menyelesaikan kelas ini.",
-  },
-  {
-    title: "Sertifikat",
-    description:
-      "Dapatkan sertifikat standar industri setelah menyelesaikan kelas ini.",
-  },
-  {
-    title: "Sertifikat",
-    description:
-      "Dapatkan sertifikat standar industri setelah menyelesaikan kelas ini.",
-  },
-];
+import { useLoaderData } from "react-router-dom";
 
 export default function App() {
+  const data = useLoaderData();
   const [active, setActive] = useState(0);
   const [screenWidth, setScreenWidth] = useState(0);
   const _wrap = useRef();
@@ -105,7 +79,11 @@ export default function App() {
   useEffect(() => {
     if (_wrap.current && screenWidth) {
       const scrolling = (e) => {
-        setActive(Math.floor(e.currentTarget.scrollLeft / get.length));
+        setActive(
+          Math.floor(
+            e.currentTarget.scrollLeft / data.variables.benefits.length
+          )
+        );
       };
 
       _wrap.current.addEventListener("scroll", scrolling);
@@ -120,20 +98,26 @@ export default function App() {
     <Fragment>
       <div
         className="w-screen h-screen flex flex-col justify-center px-8 relative"
-        style={{ backgroundColor: "#2D4356" }}
+        style={{ backgroundColor: data.variables.base_color }}
       >
         <img
           src="https://aws.dicoding.com/images/aws/aws-training-certification-final.svg"
           className="h-20 w-auto mx-auto mb-8 -mt-20"
         />
         <div className="font-poppins text-2xl lg:text-4xl text-white font-bold text-center w-full lg:w-1/2 mx-auto">
-          DevOps and Back-End Developer Scholarship Program
+          {data.variables.hero_title}
         </div>
         <div className="text-gray-200 text-center w-full lg:w-1/2mx-auto text-base lg:text-xl mt-3">
-          Raih Beasiswa Menjadi DevOps dan Back-End Developer
+          {data.variables.hero_description}
         </div>
         <div className="w-52 mt-12 mx-auto">
-          <Button to="/" style={{ backgroundColor: "#F29727" }} />
+          <Button
+            href={
+              "https://app.gurupro.id/main/ecourse/course-detail/" +
+              data.course.id
+            }
+            style={{ backgroundColor: data.variables.secondary_color }}
+          />
         </div>
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
           <div className="p-3 text-gray-400 hover:text-gray-200 flex flex-col justify-center items-center">
@@ -147,20 +131,11 @@ export default function App() {
         className="flex flex-col lg:flex-row justify-center items-start space-x-0 lg:space-x-8 space-y-4 lg:space-y-0"
       >
         <img
-          src="https://picsum.photos/800/450"
+          src={data.course.banner}
           className="w-full lg:w-1/3 h-auto rounded"
         />
         <div className="flex-1 prose text-justify">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-            pellentesque turpis dapibus justo tempus vehicula. Nunc elementum,
-            nisi bibendum feugiat condimentum, dui lectus ultrices odio, non
-            malesuada ante massa id odio. Nunc sed nulla et diam cursus
-            pellentesque eget in nisl. Pellentesque non elit risus. Nullam leo
-            justo, mattis ac suscipit eu, commodo ut orci. Nunc id erat vitae
-            augue elementum porttitor quis non justo. Phasellus nec magna in
-            nisl tempor cursus egestas sed nunc
-          </p>
+          <p>{data.course.short_desc}</p>
         </div>
       </Container>
       <Container
@@ -196,7 +171,7 @@ export default function App() {
             className="flex items-stretch justify-start space-x-5 mt-8"
             ref={_wrap}
           >
-            {get.map((item, index) => (
+            {data.variables.benefits.map((item, index) => (
               <CardSlideList key={`${index}`} title={item.title}>
                 {item.description}
               </CardSlideList>
@@ -206,77 +181,23 @@ export default function App() {
       </Container>
       <Container
         containerClassName="pt-0 pb-12 lg:pb-20 bg-gray-200"
-        className="bg-white rounded p-5 lg:p-8 lg:py-10 prose max-w-full text-justify"
+        className="bg-white rounded p-5 lg:p-8 lg:py-10"
       >
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          nec placerat nunc, vehicula viverra diam. Mauris eu neque congue,
-          dictum ex sit amet, tempus metus. Duis dapibus semper libero, quis
-          placerat libero luctus a. Vivamus sed leo vel nulla lacinia pharetra
-          et nec dui. Morbi sagittis volutpat orci, ut aliquam dolor aliquet
-          vel. Vestibulum ac orci gravida, luctus nisl a, laoreet augue.
-          Vestibulum fringilla semper lorem, in vehicula dui auctor id. Vivamus
-          felis erat, porta sit amet ultricies ac, pulvinar nec velit. Ut non
-          imperdiet dolor, eu blandit ante. Duis risus felis, dapibus id libero
-          eu, viverra interdum dui. Curabitur fermentum ex est, vel consequat
-          orci molestie quis. Donec malesuada id massa id consequat. Proin at
-          quam at orci feugiat feugiat id sed tellus. Etiam eu sapien vitae
-          turpis tincidunt faucibus. Curabitur quam magna, lacinia vestibulum
-          mauris id, bibendum pulvinar nunc.
-        </p>
-        <p>
-          Proin ornare, tellus ac fermentum tempus, urna leo rhoncus enim, eu
-          pellentesque risus est ut tortor. Ut aliquet congue ligula. In
-          pretium, lorem nec malesuada fringilla, dui odio euismod ex, nec
-          interdum enim dui vel erat. Nullam placerat condimentum lorem nec
-          sodales. Praesent et metus risus. Mauris dapibus diam sed ultricies
-          euismod. Morbi pellentesque feugiat mauris at tempor. Vestibulum
-          suscipit mollis porttitor. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Proin bibendum tellus nec pretium eleifend. Etiam
-          quis tempus nibh.
-        </p>
-        <p>
-          Morbi id nunc eget quam suscipit tempus sit amet eu diam. Quisque sed
-          justo turpis. Praesent congue elementum nisi vel efficitur. Nam
-          finibus, tortor non efficitur pellentesque, augue elit egestas dolor,
-          vitae auctor risus nulla in odio. Donec consequat leo ac luctus
-          consectetur. Integer diam mi, varius id ligula fringilla, faucibus
-          varius purus. Fusce consequat ullamcorper ullamcorper. Vestibulum
-          pellentesque ligula quis tortor elementum accumsan.
-        </p>
+        <div
+          className="prose max-w-full text-justify"
+          dangerouslySetInnerHTML={{ __html: data.course.description }}
+        />
       </Container>
       <Container containerClassName="py-12 lg:py-20 bg-white">
         <div className="text-center font-poppins text-lg lg:text-2xl font-bold text-gray-800 mb-8">
           Frequently Asked Questions (FAQ)
         </div>
         <div className="w-full lg:w-2/3 mx-auto">
-          <QuestionList title="Lorem ipsum?">
-            Morbi id nunc eget quam suscipit tempus sit amet eu diam. Quisque
-            sed justo turpis. Praesent congue elementum nisi vel efficitur. Nam
-            finibus, tortor non efficitur pellentesque, augue elit egestas
-            dolor, vitae auctor risus nulla in odio. Donec consequat leo ac
-            luctus consectetur. Integer diam mi, varius id ligula fringilla,
-            faucibus varius purus. Fusce consequat ullamcorper ullamcorper.
-            Vestibulum pellentesque ligula quis tortor elementum accumsan.
-          </QuestionList>
-          <QuestionList title="Lorem ipsum?">
-            Morbi id nunc eget quam suscipit tempus sit amet eu diam. Quisque
-            sed justo turpis. Praesent congue elementum nisi vel efficitur. Nam
-            finibus, tortor non efficitur pellentesque, augue elit egestas
-            dolor, vitae auctor risus nulla in odio. Donec consequat leo ac
-            luctus consectetur. Integer diam mi, varius id ligula fringilla,
-            faucibus varius purus. Fusce consequat ullamcorper ullamcorper.
-            Vestibulum pellentesque ligula quis tortor elementum accumsan.
-          </QuestionList>
-          <QuestionList title="Lorem ipsum?">
-            Morbi id nunc eget quam suscipit tempus sit amet eu diam. Quisque
-            sed justo turpis. Praesent congue elementum nisi vel efficitur. Nam
-            finibus, tortor non efficitur pellentesque, augue elit egestas
-            dolor, vitae auctor risus nulla in odio. Donec consequat leo ac
-            luctus consectetur. Integer diam mi, varius id ligula fringilla,
-            faucibus varius purus. Fusce consequat ullamcorper ullamcorper.
-            Vestibulum pellentesque ligula quis tortor elementum accumsan.
-          </QuestionList>
+          {data.variables.faqs.map((item, index) => (
+            <QuestionList title={item.question} key={`${index}`}>
+              {item.answer}
+            </QuestionList>
+          ))}
         </div>
       </Container>
       <Container
@@ -287,7 +208,13 @@ export default function App() {
         <div className="text-2xl text-white font-poppins font-bold text-center">
           Ayo segera bergabung bersama kami!
         </div>
-        <Button to="/" style={{ backgroundColor: "#F29727" }} />
+        <Button
+          href={
+            "https://app.gurupro.id/main/ecourse/course-detail/" +
+            data.course.id
+          }
+          style={{ backgroundColor: data.variables.secondary_color }}
+        />
       </Container>
       <Container containerClassName="py-12 bg-white">
         <img
