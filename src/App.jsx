@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   CgChevronDoubleDown,
   CgChevronLeft,
@@ -42,6 +42,11 @@ const get = [
 
 export default function App() {
   const [active, setActive] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(0);
+
+  useEffect(() => {
+    setScreenWidth(screen.width);
+  }, []);
 
   return (
     <Fragment>
@@ -124,7 +129,7 @@ export default function App() {
             className="flex items-stretch justify-start space-x-5 mt-8 transition-all duration-500"
             style={{
               transform: `translateX(calc((0px - (${
-                screen.width >= 1024 ? "30" : "85"
+                screenWidth >= 1024 ? "30" : "85"
               }% + 19px)) * ${active}))`,
             }}
           >
