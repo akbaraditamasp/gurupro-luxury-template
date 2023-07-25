@@ -1,0 +1,56 @@
+{
+  "base_color": {
+    "label": "Warna Dasar",
+    "rules": "required",
+    "type": "color_picker"
+  },
+  "secondary_color": {
+    "label": "Warna Secondary",
+    "rules": "required",
+    "type": "color_picker"
+  },
+  "hero_title": {
+    "label": "Judul Hero",
+    "rules": "required",
+    "type": "text_input"
+  },
+  "hero_description": {
+    "label": "Deskripsi Hero",
+    "rules": "required",
+    "type": "textarea"
+  },
+  "benefits": {
+    "label": "Yang Akan Didapatkan",
+    "rules": "required",
+    "type": "array",
+    "member": {
+      "title": {
+        "label": "Judul",
+        "rules": "required",
+        "type": "text_input"
+      },
+      "description": {
+        "label": "Deskripsi",
+        "rules": "required",
+        "type": "textarea"
+      }
+    },
+    "faqs": {
+      "label": "FAQs",
+      "rules": "required",
+      "type": "array",
+      "member": {
+        "question": {
+          "label": "Pertanyaan",
+          "rules": "required",
+          "type": "text_input"
+        },
+        "answer": {
+          "label": "Judul",
+          "rules": "required",
+          "type": "textarea"
+        }
+      }
+    }
+  }
+}
