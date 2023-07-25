@@ -12,6 +12,7 @@ import CardSlideList from "./components/CardSlideList";
 import QuestionList from "./components/QuestionList";
 import Button from "./components/Button";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function App() {
   const data = useLoaderData();
@@ -96,6 +97,14 @@ export default function App() {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{data.course.name}</title>
+        <meta name="description" content={data.course.short_desc} />
+        <meta property="og:title" content={data.course.name} />
+        <meta property="og:description" content={data.course.short_desc} />
+        <meta property="og:image" content={data.course.banner} />
+        <meta property="og:url" content={data.url} />
+      </Helmet>
       <div
         className="w-screen h-screen flex flex-col justify-center px-8 relative"
         style={{ backgroundColor: data.variables.base_color }}
@@ -104,10 +113,10 @@ export default function App() {
           src={data.variables.logo}
           className="h-20 w-auto mx-auto mb-8 -mt-20"
         />
-        <div className="font-poppins text-2xl lg:text-4xl text-white font-bold text-center w-full lg:w-1/2 mx-auto">
+        <div className="font-poppins text-2xl lg:text-4xl text-white font-bold text-center w-full lg:w-2/3 mx-auto">
           {data.variables.hero_title}
         </div>
-        <div className="text-gray-200 text-center w-full lg:w-1/2mx-auto text-base lg:text-xl mt-3">
+        <div className="text-gray-200 text-center w-full lg:w-2/3 mx-auto text-base mt-3">
           {data.variables.hero_description}
         </div>
         <div className="w-52 mt-12 mx-auto">

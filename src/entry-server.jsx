@@ -16,6 +16,7 @@ export async function render(req, data) {
   const context = await handler.query(fetchRequest, {
     requestContext: {
       data,
+      url: req.protocol + "://" + req.get("host") + req.originalUrl,
     },
   });
   const router = createStaticRouter(handler.dataRoutes, context);

@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/",
     loader: ({ context }) => {
-      return context.data;
+      return { ...context.data, url: context.url };
     },
     Component: App,
   },
