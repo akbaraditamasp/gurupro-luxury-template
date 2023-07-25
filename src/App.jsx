@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import {
   CgChevronDoubleDown,
   CgChevronLeft,
@@ -43,10 +43,78 @@ const get = [
 export default function App() {
   const [active, setActive] = useState(0);
   const [screenWidth, setScreenWidth] = useState(0);
+  const _wrap = useRef();
+  const _container = useRef();
+
+  const next = () => {
+    _container.current.scrollBy({
+      top: 0,
+      left: (active + 1) * screenWidth,
+      behavior: "smooth",
+    });
+  };
+
+  const prev = () => {
+    _container.current.scrollBy({
+      top: 0,
+      left: (active - 1) * screenWidth,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
-    setScreenWidth(screen.width);
-  }, []);
+    if (_container.current) {
+      setScreenWidth((30 * _container.current.offsetWidth) / 100 + 19);
+
+      let isDragging = false;
+      let startPosition = 0;
+      let scrollLeftStartPosition = 0;
+      let distance = 0;
+
+      const mouseDown = (e) => {
+        isDragging = true;
+        startPosition = e.clientX;
+        scrollLeftStartPosition = _container.current.scrollLeft;
+      };
+
+      const mouseUp = () => {
+        isDragging = false;
+      };
+
+      const mouseMove = (e) => {
+        if (!isDragging) return;
+
+        distance = (e.clientX - startPosition) * 1.5;
+        _container.current.scrollLeft = scrollLeftStartPosition - distance;
+      };
+
+      _container.current.addEventListener("mousedown", mouseDown);
+
+      document.addEventListener("mouseup", mouseUp);
+
+      document.addEventListener("mousemove", mouseMove);
+
+      return () => {
+        _container.current.removeEventListener("mousedown", mouseDown);
+        document.removeEventListener("mouseup", mouseUp);
+        document.removeEventListener("mousedown", mouseDown);
+      };
+    }
+  }, [_container]);
+
+  useEffect(() => {
+    if (_wrap.current && screenWidth) {
+      const scrolling = (e) => {
+        setActive(Math.floor(e.currentTarget.scrollLeft / get.length));
+      };
+
+      _wrap.current.addEventListener("scroll", scrolling);
+
+      return () => {
+        _wrap.current.removeEventListener("scroll", scrolling);
+      };
+    }
+  }, [_wrap, screenWidth]);
 
   return (
     <Fragment>
@@ -106,32 +174,27 @@ export default function App() {
           <div className="flex justify-between items-center space-x-3">
             <button
               type="button"
-              onClick={() =>
-                setActive((value) => (value > 0 ? value - 1 : value))
-              }
+              onClick={() => prev()}
               className="rounded border border-gray-600 text-gray-700 text-base lg:text-xl w-6 h-6 lg:w-10 lg:h-10 flex justify-center items-center"
             >
               <CgChevronLeft />
             </button>
             <button
               type="button"
-              onClick={() =>
-                setActive((value) => (value < get.length ? value + 1 : value))
-              }
+              onClick={() => next()}
               className="rounded border border-gray-600 text-gray-700 text-base lg:text-xl w-6 h-6 lg:w-10 lg:h-10 flex justify-center items-center"
             >
               <CgChevronRight />
             </button>
           </div>
         </div>
-        <div className="w-full overflow-x-hidden">
+        <div
+          className="w-full overflow-x-auto no-scrollbar cursor-pointer"
+          ref={_container}
+        >
           <div
-            className="flex items-stretch justify-start space-x-5 mt-8 transition-all duration-500"
-            style={{
-              transform: `translateX(calc((0px - (${
-                screenWidth >= 1024 ? "30" : "85"
-              }% + 19px)) * ${active}))`,
-            }}
+            className="flex items-stretch justify-start space-x-5 mt-8"
+            ref={_wrap}
           >
             {get.map((item, index) => (
               <CardSlideList key={`${index}`} title={item.title}>

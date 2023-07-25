@@ -9,3 +9,34 @@ body {
 #root {
   @apply overflow-x-hidden;
 }
+
+/* Untuk browser berbasis WebKit (seperti Chrome, Safari) */
+/* Hilangkan scrollbar pada elemen dengan class "no-scrollbar" */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Untuk browser lain (Firefox, Edge, dll) */
+/* Hilangkan scrollbar pada elemen dengan class "no-scrollbar" */
+@-moz-document url-prefix() {
+  /* Gunakan @-moz-document untuk Firefox */
+  /* Hilangkan scrollbar pada elemen dengan class "no-scrollbar" */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+/* Hilangkan scrollbar pada elemen dengan class "no-scrollbar" */
+@supports (-ms-overflow-style: none) {
+  /* Gunakan @supports untuk Edge */
+  /* Hilangkan scrollbar pada elemen dengan class "no-scrollbar" */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+  }
+}
+
+/* Setel overflow agar bisa scrolling pada elemen dengan class "no-scrollbar" */
+.no-scrollbar {
+  overflow: scroll;
+  /* atau overflow: auto; */
+}
