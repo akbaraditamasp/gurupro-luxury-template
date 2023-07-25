@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-inter text-gray-600;
+}
+
+#root {
+  @apply overflow-x-hidden;
+}
