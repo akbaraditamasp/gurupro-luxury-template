@@ -112,13 +112,15 @@ export default function App() {
         <img
           src={data.variables.logo}
           className="h-20 w-auto mx-auto mb-8 -mt-20"
+          alt="Logo"
+          title="Logo"
         />
-        <div className="font-poppins text-2xl lg:text-4xl text-white font-bold text-center w-full lg:w-2/3 mx-auto">
+        <h1 className="font-poppins text-2xl lg:text-4xl text-white font-bold text-center w-full lg:w-2/3 mx-auto">
           {data.variables.hero_title}
-        </div>
-        <div className="text-gray-200 text-center w-full lg:w-2/3 mx-auto text-base mt-3">
+        </h1>
+        <p className="text-gray-200 text-center w-full lg:w-2/3 mx-auto text-base mt-3">
           {data.variables.hero_description}
-        </div>
+        </p>
         <div className="w-52 mt-12 mx-auto">
           <Button
             href={
@@ -126,6 +128,7 @@ export default function App() {
               data.course.id
             }
             style={{ backgroundColor: data.variables.secondary_color }}
+            title={"Gabung Kursus " + data.course.name}
           />
         </div>
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
@@ -142,6 +145,8 @@ export default function App() {
         <img
           src={data.course.banner}
           className="w-full lg:w-1/3 h-auto rounded"
+          alt={data.course.name}
+          title={data.course.name}
         />
         <div className="flex-1 prose text-justify">
           <p>{data.course.short_desc}</p>
@@ -152,9 +157,9 @@ export default function App() {
         className="bg-white rounded p-5 lg:p-8 lg:py-10"
       >
         <div className="flex items-center justify-between">
-          <div className="flex-1 font-poppins font-bold text-lg lg:text-2xl text-gray-800">
+          <h2 className="flex-1 font-poppins font-bold text-lg lg:text-2xl text-gray-800">
             Apa yang akan Anda dapatkan
-          </div>
+          </h2>
           <div className="flex justify-between items-center space-x-3">
             <button
               type="button"
@@ -176,7 +181,7 @@ export default function App() {
           className="w-full overflow-x-auto no-scrollbar cursor-pointer"
           ref={_container}
         >
-          <div
+          <ul
             className="flex items-stretch justify-start space-x-5 mt-8"
             ref={_wrap}
           >
@@ -185,7 +190,7 @@ export default function App() {
                 {item.description}
               </CardSlideList>
             ))}
-          </div>
+          </ul>
         </div>
       </Container>
       <Container
@@ -198,9 +203,9 @@ export default function App() {
         />
       </Container>
       <Container containerClassName="py-12 lg:py-20 bg-white">
-        <div className="text-center font-poppins text-lg lg:text-2xl font-bold text-gray-800 mb-8">
+        <h3 className="text-center font-poppins text-lg lg:text-2xl font-bold text-gray-800 mb-8">
           Frequently Asked Questions (FAQ)
-        </div>
+        </h3>
         <div className="w-full lg:w-2/3 mx-auto">
           {data.variables.faqs.map((item, index) => (
             <QuestionList title={item.question} key={`${index}`}>
@@ -214,21 +219,24 @@ export default function App() {
         containerProps={{ style: { backgroundColor: "#2D4356" } }}
         className="flex flex-col items-center justify-center h-40 space-y-5"
       >
-        <div className="text-2xl text-white font-poppins font-bold text-center">
+        <h4 className="text-2xl text-white font-poppins font-bold text-center">
           Ayo segera bergabung bersama kami!
-        </div>
+        </h4>
         <Button
           href={
             "https://app.gurupro.id/main/ecourse/course-detail/" +
             data.course.id
           }
           style={{ backgroundColor: data.variables.secondary_color }}
+          title={"Gabung Kursus " + data.course.name}
         />
       </Container>
       <Container containerClassName="py-12 bg-white">
         <img
           src="https://www.gurupro.id/img/gurupro/GuruPRObiru.png"
           className="h-16 lg:h-20 w-auto mb-2"
+          title="Logo GuruPRO"
+          alt="Logo GuruPRO"
         />
         <div className="prose prose-sm">
           JL TB Simatupang Kav 1, <br />
@@ -246,18 +254,21 @@ export default function App() {
         </div>
         <div className="flex justify-end items-center space-x-3">
           <a
+            title="Facebook GuruPRO"
             href="https://www.facebook.com/thegurupro.id"
             className="h-8 w-8 bg-gray-600 hover:bg-gray-800 text-white flex justify-center items-center rounded-full"
           >
             <CgFacebook />
           </a>
           <a
+            title="Instagram GuruPRO"
             href="https://www.instagram.com/gurupro.id"
             className="h-8 w-8 bg-gray-600 hover:bg-gray-800 text-white flex justify-center items-center rounded-full"
           >
             <CgInstagram />
           </a>
           <a
+            title="Youtube GuruPRO"
             href="https://www.youtube.com/@gurupro_id"
             className="h-8 w-8 bg-gray-600 hover:bg-gray-800 text-white flex justify-center items-center rounded-full"
           >
