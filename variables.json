@@ -15,17 +15,17 @@
     "type": "color_picker"
   },
   "hero_title": {
-    "label": "Judul Hero",
+    "label": "Judul",
     "rules": "required",
     "type": "text_input"
   },
   "hero_description": {
-    "label": "Deskripsi Hero",
+    "label": "Sub Judul",
     "rules": "required",
     "type": "textarea"
   },
   "benefits": {
-    "label": "Yang Akan Didapatkan",
+    "label": "Benefit",
     "rules": "required",
     "type": "array",
     "member": {
