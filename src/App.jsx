@@ -220,7 +220,7 @@ export default function App() {
         className="flex flex-col items-center justify-center h-40 space-y-5"
       >
         <h4 className="text-2xl text-white font-poppins font-bold text-center">
-          Ayo segera bergabung bersama kami!
+          {data.variables.join_text}
         </h4>
         <Button
           href={

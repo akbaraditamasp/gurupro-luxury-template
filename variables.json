@@ -24,6 +24,11 @@
     "rules": "required",
     "type": "textarea"
   },
+  "join_text": {
+    "label": "Kalimat Ajakan",
+    "rules": "required",
+    "type": "text_input"
+  },
   "benefits": {
     "label": "Benefit",
     "rules": "required",
