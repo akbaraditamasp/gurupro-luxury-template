@@ -17,7 +17,7 @@
   "hero_title": {
     "label": "Judul",
     "rules": "required",
-    "type": "text_input"
+    "type": "textarea"
   },
   "hero_description": {
     "label": "Sub Judul",
@@ -27,7 +27,7 @@
   "join_text": {
     "label": "Kalimat Ajakan",
     "rules": "required",
-    "type": "text_input"
+    "type": "textarea"
   },
   "benefits": {
     "label": "Benefit",
@@ -54,10 +54,10 @@
       "question": {
         "label": "Pertanyaan",
         "rules": "required",
-        "type": "text_input"
+        "type": "textarea"
       },
       "answer": {
-        "label": "Judul",
+        "label": "Jawaban",
         "rules": "required",
         "type": "textarea"
       }
