@@ -1,10 +1,18 @@
-export default function Button(props) {
+export default function Button({
+  element: Element = "a",
+  className = "",
+  children,
+  ...props
+}) {
   return (
-    <a
-      className="h-12 px-5 rounded flex items-center justify-center text-white"
+    <Element
+      className={
+        "h-12 px-5 rounded flex items-center justify-center text-white " +
+        className
+      }
       {...props}
     >
-      Bergabung Sekarang
-    </a>
+      {children}
+    </Element>
   );
 }

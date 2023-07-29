@@ -11,8 +11,10 @@ import Container from "./components/Container";
 import CardSlideList from "./components/CardSlideList";
 import QuestionList from "./components/QuestionList";
 import Button from "./components/Button";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
+import fileDownload from "js-file-download";
 
 export default function App() {
   const data = useLoaderData();
@@ -20,6 +22,34 @@ export default function App() {
   const [screenWidth, setScreenWidth] = useState(0);
   const _wrap = useRef();
   const _container = useRef();
+  const _email = useRef();
+  const [loading, setLoading] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  const getCert = () => {
+    setLoading(true);
+    setFailed(false);
+    axios
+      .post(
+        `https://api.gurupro.id/api/course/${data.course.id}/certificate/download`,
+        {
+          email: _email.current.value,
+        },
+        {
+          responseType: "blob",
+        }
+      )
+      .then((response) => {
+        setLoading(false);
+        setFailed(false);
+
+        fileDownload(response.data, "sertifikat.pdf");
+      })
+      .catch(() => {
+        setLoading(false);
+        setFailed(true);
+      });
+  };
 
   const next = () => {
     _container.current.scrollBy({
@@ -121,7 +151,7 @@ export default function App() {
         <p className="text-gray-200 text-center w-full lg:w-2/3 mx-auto text-base mt-3">
           {data.variables.hero_description}
         </p>
-        <div className="w-52 mt-12 mx-auto">
+        <div className="w-full lg:w-1/2 mt-12 mx-auto flex justify-center items-center space-x-5">
           <Button
             href={
               "https://app.gurupro.id/main/ecourse/course-detail/" +
@@ -129,7 +159,16 @@ export default function App() {
             }
             style={{ backgroundColor: data.variables.secondary_color }}
             title={"Gabung Kursus " + data.course.name}
-          />
+          >
+            Bergabung Sekarang
+          </Button>
+          <Button
+            href="/#cert"
+            className="bg-gray-700"
+            title={"Download Sertifikat"}
+          >
+            Download Sertifikat
+          </Button>
         </div>
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
           <div className="p-3 text-gray-400 hover:text-gray-200 flex flex-col justify-center items-center">
@@ -216,7 +255,9 @@ export default function App() {
       </Container>
       <Container
         containerClassName="py-12"
-        containerProps={{ style: { backgroundColor: "#2D4356" } }}
+        containerProps={{
+          style: { backgroundColor: data.variables.base_color },
+        }}
         className="flex flex-col items-center justify-center h-40 space-y-5"
       >
         <h4 className="text-2xl text-white font-poppins font-bold text-center">
@@ -229,7 +270,43 @@ export default function App() {
           }
           style={{ backgroundColor: data.variables.secondary_color }}
           title={"Gabung Kursus " + data.course.name}
-        />
+        >
+          Bergabung Sekarang
+        </Button>
+      </Container>
+      <Container
+        id="cert"
+        containerClassName="py-20 bg-gray-100"
+        className="flex flex-col items-center justify-center space-y-5"
+      >
+        <h3 className="text-center font-poppins text-lg lg:text-2xl font-bold text-gray-800 mb-1">
+          Download Sertifikat
+        </h3>
+        {failed && (
+          <div className="text-sm text-red-500">Email tidak ditemukan</div>
+        )}
+        <div className="w-full lg:w-2/3 flex justify-center items-center space-x-5 mt-5">
+          <div className="flex-1">
+            <input
+              ref={_email}
+              type="text"
+              placeholder="Masukkan email anda"
+              className="h-12 w-full border border-gray-400 rounded px-3"
+            />
+          </div>
+          <Button
+            element="button"
+            className="w-32"
+            onClick={() => {
+              getCert();
+            }}
+            style={{ backgroundColor: data.variables.base_color }}
+            title={"Gabung Kursus " + data.course.name}
+            disabled={loading}
+          >
+            {loading ? "Tunggu..." : "Download"}
+          </Button>
+        </div>
       </Container>
       <Container containerClassName="py-12 bg-white">
         <img
