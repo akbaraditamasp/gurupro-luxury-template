@@ -151,7 +151,11 @@ export default function App() {
         <p className="text-gray-200 text-center w-full lg:w-2/3 mx-auto text-base mt-3">
           {data.variables.hero_description}
         </p>
-        <div className="w-full lg:w-1/2 mt-12 mx-auto flex justify-center items-center space-x-5">
+        <div
+          className={`${
+            data.variables.cert_download ? "w-full" : "w-2/3"
+          } lg:w-1/2 mt-12 mx-auto flex justify-center items-center space-x-5`}
+        >
           <Button
             href={
               "https://app.gurupro.id/main/ecourse/course-detail/" +
@@ -159,16 +163,19 @@ export default function App() {
             }
             style={{ backgroundColor: data.variables.secondary_color }}
             title={"Gabung Kursus " + data.course.name}
+            className="flex justify-center items-center text-center"
           >
             Bergabung Sekarang
           </Button>
-          <Button
-            href="/#cert"
-            className="bg-gray-700"
-            title={"Download Sertifikat"}
-          >
-            Download Sertifikat
-          </Button>
+          {data.variables.cert_download && (
+            <Button
+              href="/#cert"
+              title={"Download Sertifikat"}
+              className="flex justify-center items-center text-center bg-gray-700"
+            >
+              Download Sertifikat
+            </Button>
+          )}
         </div>
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
           <div className="p-3 text-gray-400 hover:text-gray-200 flex flex-col justify-center items-center">
