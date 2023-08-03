@@ -10,7 +10,7 @@
     "type": "textarea"
   },
   "about": {
-    "label": "Sub Judul",
+    "label": "Tentang",
     "rules": "required",
     "type": "rich_editor"
   },

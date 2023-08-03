@@ -11,22 +11,8 @@ const routes = [
   {
     path: "/",
     id: "root",
-    loader: async () => {
-      let data = null;
-
-      try {
-        data = await client
-          .get("/micro/subdomain", {
-            params: {
-              subdomain: "ngin-academy.gurupro.id",
-            },
-          })
-          .then((response) => response.data);
-      } catch (e) {
-        throw new Response("Not Found", {
-          status: 404,
-        });
-      }
+    loader: ({ context }) => {
+      let data = { ...context.data, url: context.url };
 
       return data;
     },
