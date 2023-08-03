@@ -16,7 +16,7 @@ const routes = [
 
       try {
         data = await client
-          .get("/micro", {
+          .get("/micro/subdomain", {
             params: {
               subdomain: "ngin-academy.gurupro.id",
             },
