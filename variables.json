@@ -1,70 +1,67 @@
 {
-  "logo": {
-    "label": "URL Logo",
-    "rules": "required",
-    "type": "text_input"
-  },
-  "base_color": {
-    "label": "Warna Dasar",
-    "rules": "required",
-    "type": "color_picker"
-  },
-  "secondary_color": {
-    "label": "Warna Secondary",
-    "rules": "required",
-    "type": "color_picker"
-  },
-  "hero_title": {
+  "title": {
     "label": "Judul",
     "rules": "required",
     "type": "textarea"
   },
-  "hero_description": {
+  "subtitle": {
     "label": "Sub Judul",
     "rules": "required",
     "type": "textarea"
   },
-  "join_text": {
-    "label": "Kalimat Ajakan",
+  "about": {
+    "label": "Sub Judul",
     "rules": "required",
-    "type": "textarea"
+    "type": "rich_editor"
   },
-  "benefits": {
-    "label": "Benefit",
+  "logo": {
+    "label": "Logo",
     "rules": "required",
+    "type": "upload"
+  },
+  "model": {
+    "label": "Model Header",
+    "rules": "required",
+    "type": "upload"
+  },
+  "quotes": {
+    "label": "Quotes",
+    "rules": "required",
+    "type": "text_input"
+  },
+  "socials": {
+    "label": "Sosial Media",
     "type": "array",
+    "rules": "required",
     "member": {
-      "title": {
-        "label": "Judul",
+      "name": {
+        "label": "Jenis",
+        "type": "enum",
+        "required": "true",
+        "options": [
+          {
+            "value": "Facebook",
+            "label": "Facebook"
+          },
+          {
+            "value": "Instagram",
+            "label": "Instagram"
+          },
+          {
+            "value": "Youtube",
+            "label": "Youtube"
+          },
+          {
+            "value": "Twitter",
+            "label": "Twitter"
+          }
+        ]
+      },
+      "url": {
+        "label": "Quotes",
         "rules": "required",
         "type": "text_input"
-      },
-      "description": {
-        "label": "Deskripsi",
-        "rules": "required",
-        "type": "textarea"
       }
     }
-  },
-  "faqs": {
-    "label": "FAQs",
-    "rules": "required",
-    "type": "array",
-    "member": {
-      "question": {
-        "label": "Pertanyaan",
-        "rules": "required",
-        "type": "textarea"
-      },
-      "answer": {
-        "label": "Jawaban",
-        "rules": "required",
-        "type": "textarea"
-      }
-    }
-  },
-  "cert_download": {
-    "label": "Download Sertifikat",
-    "type": "switch"
   }
 }
