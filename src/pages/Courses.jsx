@@ -2,12 +2,27 @@ import { Fragment } from "react";
 import CardCourse from "../components/CardCourse";
 import Container from "../components/Container";
 import { useRouteLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function Courses() {
   const rootData = useRouteLoaderData("root");
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Kursus Saya</title>
+        <meta
+          name="description"
+          content={`Ikuti kursus terbaik dari ${rootData.variables?.title}`}
+        />
+        <meta property="og:title" content={"Kursus Saya"} />
+        <meta
+          property="og:description"
+          content={`Ikuti kursus terbaik dari ${rootData.variables?.title}`}
+        />
+        <meta property="og:image" content={rootData.variables?.logo} />
+        <meta property="og:url" content={rootData.url} />
+      </Helmet>
       <Container
         containerClassName="bg-gradient-to-br from-blue-200 to-purple-400 pt-20"
         className="relative flex flex-col justify-center h-64"

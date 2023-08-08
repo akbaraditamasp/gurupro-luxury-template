@@ -8,8 +8,8 @@ export default function Footer() {
   return (
     <Fragment>
       <Container containerClassName="py-20 bg-purple-300 relative mt-12">
-        <div className="bg-purple-300 h-20 transform rotate-2 absolute -top-5 -left-10 -right-10 border-t-4 border-purple-400" />
-        <div className="bg-purple-300 h-20 transform rotate-2 absolute -bottom-5 -left-10 -right-10 border-b-4 border-purple-400" />
+        <div className="bg-purple-300 h-20 transform rotate-2 absolute -top-10 -left-10 -right-10 border-t-4 border-purple-400" />
+        <div className="bg-purple-300 h-20 transform rotate-2 absolute -bottom-10 -left-10 -right-10 border-b-4 border-purple-400" />
         <div className="font-bold text-gray-800 font-montserrat text-4xl text-center">
           "{rootData.variables?.quotes}"
         </div>

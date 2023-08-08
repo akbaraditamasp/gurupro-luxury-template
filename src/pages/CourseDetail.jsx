@@ -1,16 +1,26 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import Container from "../components/Container";
 import { RiStarFill } from "react-icons/ri";
 import { CgArrowRight } from "react-icons/cg";
 import { Fragment } from "react";
 import HeadTitle from "../components/HeadTitle";
 import { NumericFormat } from "react-number-format";
+import { Helmet } from "react-helmet-async";
 
 export default function CourseDetail() {
   const data = useLoaderData();
+  const rootData = useRouteLoaderData("root");
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{data.name}</title>
+        <meta name="description" content={data.short_desc} />
+        <meta property="og:title" content={data.name} />
+        <meta property="og:description" content={data.short_desc} />
+        <meta property="og:image" content={data.banner} />
+        <meta property="og:url" content={rootData.url} />
+      </Helmet>
       <Container
         containerClassName="pt-[10rem] pb-20 border-b border-gray-400 bg-gradient-to-br from-blue-100 to-purple-200"
         className="flex justify-center space-x-8"

@@ -5,12 +5,24 @@ import CardContent from "../components/CardContent";
 import Container from "../components/Container";
 import HeadTitle from "../components/HeadTitle";
 import CardCourse from "../components/CardCourse";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   const rootData = useRouteLoaderData("root");
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{rootData.variables?.title}</title>
+        <meta name="description" content={rootData.variables?.subtitle} />
+        <meta property="og:title" content={rootData.variables?.title} />
+        <meta
+          property="og:description"
+          content={rootData.variables?.subtitle}
+        />
+        <meta property="og:image" content={rootData.variables?.logo} />
+        <meta property="og:url" content={rootData.url} />
+      </Helmet>
       <Container
         containerClassName="bg-gradient-to-br from-blue-200 to-purple-400 py-10"
         className="relative flex flex-col justify-center min-h-screen"
@@ -77,10 +89,15 @@ export default function Home() {
       <Container className="py-24 pt-0 bg-white">
         <HeadTitle element="h3">Artikel Terbaru</HeadTitle>
         <div className="grid grid-flow-row grid-cols-4 gap-5">
-          <CardContent />
-          <CardContent />
-          <CardContent />
-          <CardContent />
+          {rootData.user?.articles?.map((item, index) => (
+            <CardContent
+              title={item.title}
+              description={item.body}
+              image={item.thumbnail}
+              id={item.id}
+              key={`${index}`}
+            />
+          ))}
         </div>
       </Container>
     </Fragment>

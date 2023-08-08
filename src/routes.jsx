@@ -1,3 +1,4 @@
+import axios from "axios";
 import { client } from "./client";
 import Blog from "./pages/Blog";
 import CourseDetail from "./pages/CourseDetail";
@@ -11,8 +12,14 @@ const routes = [
   {
     path: "/",
     id: "root",
-    loader: ({ context }) => {
-      let data = { ...context.data, url: context.url };
+    loader: async ({ context }) => {
+      let data = context?.data
+        ? { ...context.data, url: context.url }
+        : await axios
+            .get(
+              "https://api.gurupro.id/api/micro/subdomain?subdomain=ngin-academy.gurupro.id"
+            )
+            .then((response) => response.data);
 
       return data;
     },
@@ -57,7 +64,27 @@ const routes = [
         element: <Blog />,
       },
       {
-        path: ":postId",
+        path: ":slug",
+        loader: async ({ params }) => {
+          const slugs = params.slug.split("-");
+          const id = decodeLowerCaseToNumber(slugs.pop());
+          const slug = slugs.join("-");
+          let data = {};
+
+          try {
+            data = await client
+              .get("/article/" + id)
+              .then((response) => response.data);
+          } catch (e) {
+            throw new Response("Not Found", { status: 404 });
+          }
+
+          if (slugify(data.title) !== slug) {
+            throw new Response("Not Found", { status: 404 });
+          }
+
+          return data;
+        },
         element: <Post />,
       },
     ],
