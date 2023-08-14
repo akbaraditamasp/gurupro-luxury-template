@@ -44,7 +44,7 @@ export default function Home() {
         <h1 className="font-montserrat font-bold text-gray-800 mb-1 text-2xl lg:text-4xl w-full lg:w-1/2 relative text-center lg:text-left">
           {rootData.variables?.title}
         </h1>
-        <h2 className="text-gray-700 text-lg mb-10 w-full lg:w-1/2 text-center relative">
+        <h2 className="text-gray-700 text-lg mb-10 w-full lg:w-1/2 text-center lg:text-left relative">
           {rootData.variables?.subtitle}
         </h2>
         <Link

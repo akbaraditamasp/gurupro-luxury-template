@@ -40,7 +40,7 @@ export default function Header() {
       )}
       <button
         type="button"
-        className="p-5 -mx-5 text-xl"
+        className="block lg:hidden p-5 -mx-5 text-xl"
         onClick={() => setHideMenu(false)}
       >
         <RiMenu3Fill />
@@ -50,9 +50,9 @@ export default function Header() {
           hideMenu
             ? "-translate-y-full"
             : "translate-y-0 shadow-lg lg:shadow-none"
-        }`}
+        } lg:translate-y-0`}
       >
-        <div className="border-b p-5 flex items-center justify-between h-20">
+        <div className="border-b p-5 flex items-center justify-between h-20 lg:hidden">
           <img
             src={rootData.variables?.logo}
             className="h-8 w-auto"
