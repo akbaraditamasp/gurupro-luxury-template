@@ -1,11 +1,12 @@
-import { Link, useMatches, useRouteLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useRouteLoaderData } from "react-router-dom";
 import Container from "./Container";
-import { useState } from "react";
-import { useEffect } from "react";
+import { RiCloseFill, RiMenu3Fill } from "react-icons/ri";
 
 export default function Header() {
   const [scroll, setScroll] = useState(0);
   const rootData = useRouteLoaderData("root");
+  const [hideMenu, setHideMenu] = useState(true);
 
   useEffect(() => {
     const scrollHandle = () => {
@@ -37,13 +38,44 @@ export default function Header() {
           />
         </Link>
       )}
-      <nav>
-        <ul className="flex justify-end items-center space-x-2 -mx-5">
+      <button
+        type="button"
+        className="p-5 -mx-5 text-xl"
+        onClick={() => setHideMenu(false)}
+      >
+        <RiMenu3Fill />
+      </button>
+      <nav
+        className={`fixed top-0 left-0 right-0 bg-white lg:bg-transparent lg:static transition duration-500 transform ${
+          hideMenu
+            ? "-translate-y-full"
+            : "translate-y-0 shadow-lg lg:shadow-none"
+        }`}
+      >
+        <div className="border-b p-5 flex items-center justify-between h-20">
+          <img
+            src={rootData.variables?.logo}
+            className="h-8 w-auto"
+            title={rootData.variables?.title || "Home"}
+            alt={rootData.variables?.title || "Home"}
+          />
+          <button
+            type="button"
+            className="p-5 -mx-5 text-xl"
+            onClick={() => setHideMenu(true)}
+          >
+            <RiCloseFill />
+          </button>
+        </div>
+        <ul
+          className={`flex flex-col lg:flex-row justify-start items-stretch py-5 lg:py-0 lg:justify-end lg:items-center space-x-0 lg:space-x-2 mx-0 lg:-mx-5`}
+        >
           <li>
             <Link
               to="/"
               title="Home"
               className="block font-bold text-sm py-3 px-5 rounded bg-transparent hover:bg-black hover:bg-opacity-20"
+              onClick={() => setHideMenu(true)}
             >
               Home
             </Link>
@@ -53,6 +85,7 @@ export default function Header() {
               to="/courses"
               title="Kursus Saya"
               className="block font-bold text-sm py-3 px-5 rounded bg-transparent hover:bg-black hover:bg-opacity-20"
+              onClick={() => setHideMenu(true)}
             >
               Kursus
             </Link>
@@ -62,6 +95,7 @@ export default function Header() {
               to="/blog"
               title="Blog Saya"
               className="block font-bold text-sm py-3 px-5 rounded bg-transparent hover:bg-black hover:bg-opacity-20"
+              onClick={() => setHideMenu(true)}
             >
               Blog
             </Link>

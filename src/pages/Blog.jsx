@@ -23,18 +23,18 @@ export default function Blog() {
         <meta property="og:url" content={rootData.url} />
       </Helmet>
       <Container
-        containerClassName="bg-gradient-to-br from-blue-200 to-purple-400 pt-20"
-        className="relative flex flex-col justify-center h-64"
+        containerClassName="bg-gradient-to-br from-blue-200 to-purple-400 pt-28"
+        className="relative flex flex-col justify-center h-52"
       >
-        <div className="font-montserrat font-bold text-gray-800 mb-1 text-4xl w-full lg:w-1/2">
+        <div className="font-montserrat font-bold text-gray-800 mb-1 text-2xl lg:text-4xl w-full lg:w-1/2">
           Blog Saya
         </div>
         <div className="text-gray-700 text-lg mb-10 w-full lg:w-1/2">
           Wawasan terbaru dari {rootData.variables?.title}
         </div>
       </Container>
-      <Container className="py-20 bg-white">
-        <div className="grid grid-flow-row grid-cols-4 gap-5">
+      <Container className="py-12 lg:py-20 bg-white">
+        <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-4 gap-5">
           {rootData.user?.articles?.map((item, index) => (
             <CardContent
               title={item.title}

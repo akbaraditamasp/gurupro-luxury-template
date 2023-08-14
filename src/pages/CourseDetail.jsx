@@ -22,12 +22,12 @@ export default function CourseDetail() {
         <meta property="og:url" content={rootData.url} />
       </Helmet>
       <Container
-        containerClassName="pt-[10rem] pb-20 border-b border-gray-400 bg-gradient-to-br from-blue-100 to-purple-200"
-        className="flex justify-center space-x-8"
+        containerClassName="pt-[7.5rem] lg:pt-[10rem] pb-10 lg:pb-20 border-b border-gray-400 bg-gradient-to-br from-blue-100 to-purple-200"
+        className="flex flex-col lg:flex-row justify-center space-y-5 lg:space-y-0 space-x-0 lg:space-x-8"
       >
         <img
           src={data.image}
-          className="w-64 h-64 bg-white rounded object-cover"
+          className="w-24 h-24 lg:w-64 lg:h-64 bg-white rounded object-cover"
         />
         <div className="flex-1 py-1">
           <div className="flex items-center justify-start space-x-2 mb-3">

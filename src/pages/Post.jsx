@@ -9,7 +9,7 @@ export default function Post() {
   return (
     <Fragment>
       <Container
-        containerClassName="pt-[10rem] pb-20"
+        containerClassName="pt-[7.5rem] lg:pt-[10rem] pb-10 lg:pb-20"
         className="relative rounded border border-gray-400 p-8 w-full lg:w-[900px] xl:w-[900px]"
       >
         <div className="mb-8">

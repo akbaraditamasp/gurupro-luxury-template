@@ -24,8 +24,8 @@ export default function Home() {
         <meta property="og:url" content={rootData.url} />
       </Helmet>
       <Container
-        containerClassName="bg-gradient-to-br from-blue-200 to-purple-400 py-10"
-        className="relative flex flex-col justify-center min-h-screen"
+        containerClassName="bg-gradient-to-br from-blue-200 to-purple-400 pt-56 lg:py-10 min-h-screen"
+        className="relative flex flex-col items-center lg:items-start justify-start lg:justify-center h-auto lg:h-screen pb-20"
       >
         <img
           src={rootData.variables?.model}
@@ -39,16 +39,16 @@ export default function Home() {
             " " +
             rootData.user?.profile?.last_name
           }
-          className="h-[90%] w-auto absolute -bottom-5 right-0"
+          className="w-[80%] h-auto lg:h-[90%] lg:w-auto absolute -bottom-5 right-auto left-1/2 transform -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-0"
         />
-        <h1 className="font-montserrat font-bold text-gray-800 mb-1 text-4xl w-full lg:w-1/2">
+        <h1 className="font-montserrat font-bold text-gray-800 mb-1 text-2xl lg:text-4xl w-full lg:w-1/2 relative text-center lg:text-left">
           {rootData.variables?.title}
         </h1>
-        <h2 className="text-gray-700 text-lg mb-10 w-full lg:w-1/2">
+        <h2 className="text-gray-700 text-lg mb-10 w-full lg:w-1/2 text-center relative">
           {rootData.variables?.subtitle}
         </h2>
         <Link
-          className="group border border-transparent hover:border-purple-800 p-1 rounded-full bg-purple-600 hover:bg-purple-700 text-white flex w-52 justify-center items-center"
+          className="group border border-transparent hover:border-purple-800 p-1 rounded-full bg-purple-600 hover:bg-purple-700 text-white flex w-52 justify-center items-center relative"
           to="/courses"
           title="Lihat Kelas"
         >
@@ -64,7 +64,7 @@ export default function Home() {
         containerClassName="py-20 bg-gray-200 relative"
         className="bg-white p-8 rounded"
       >
-        <div className="bg-gray-200 h-20 transform -rotate-2 absolute -top-6 -left-10 -right-10" />
+        <div className="bg-gray-200 h-20 transform -rotate-2 absolute -top-6 -left-10 -right-10 hidden lg:block" />
         <HeadTitle element="h3">Sedikit Tentang Saya</HeadTitle>
         <div
           className="prose max-w-full text-justify"
@@ -73,7 +73,7 @@ export default function Home() {
       </Container>
       <Container className="py-20 bg-white">
         <HeadTitle element="h3">Kelas Saya</HeadTitle>
-        <div className="grid grid-flow-row grid-cols-4 gap-5">
+        <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-4 gap-5">
           {rootData.user?.courses?.map((item, index) => (
             <CardCourse
               title={item.name}
@@ -88,7 +88,7 @@ export default function Home() {
       </Container>
       <Container className="py-24 pt-0 bg-white">
         <HeadTitle element="h3">Artikel Terbaru</HeadTitle>
-        <div className="grid grid-flow-row grid-cols-4 gap-5">
+        <div className="grid grid-flow-row gird-cols-1 lg:grid-cols-4 gap-5">
           {rootData.user?.articles?.map((item, index) => (
             <CardContent
               title={item.title}
